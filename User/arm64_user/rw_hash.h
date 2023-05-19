@@ -16,11 +16,6 @@ typedef struct _hash_table {
     pthread_rwlock_t lock[HASH_SIZE];
 } hash_table;
 
-typedef struct person{
-    int id;
-    char name[50];
-} person;
-
 hash_table* create_hash_table();
 void hash_table_put(hash_table* , const char* , void* );
 void* hash_table_get(hash_table* , const char* );
