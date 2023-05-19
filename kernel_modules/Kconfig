@@ -1,0 +1,9 @@
+menu "dedup KM"
+comment "dedup kernel module"
+
+config DEDUP
+    tristate "dedup module"
+    default m
+    help
+    dedup kernel module test
+endmenu
