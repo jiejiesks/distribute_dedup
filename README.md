@@ -35,7 +35,7 @@ Makefile
 obj-$(CONFIG_DEDUP)		+= dedup/
 ```
 
-然后在out/kernel/src_tmp/linux-5.10/drivers目录下输入以下命令
+然后在out/kernel/src_tmp/linux-5.10目录下输入以下命令
 
 ```
 export OHOS_ROOT=~/Documents/DevEco/Projects/RK3568

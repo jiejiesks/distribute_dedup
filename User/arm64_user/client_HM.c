@@ -110,7 +110,7 @@ int main()
     struct ifreq ifreq;
     unsigned char mac[MAC_LENGTH];
     int status;
-    // status = system("/data/fscryptctl add_key /data/service/el2/100/hmdfs/account/ < /data/crypttable");
+    status = system("/data/fscryptctl add_key /data/service/el2/100/hmdfs/account/ < /data/crypttable");
     if (status != 0)
     {
         printf("add key success\n");
