@@ -50,11 +50,19 @@ export PRODUCT_PATH=vendor/hihope/RK3568
 
 ## RK3568
 
-将client_HM和server_HM放入/data目录下，并赋予可执行权限+x。
+将client_HM、server_HM、dedup.ko放入/data目录下，并赋予可执行权限+x。
 
-先执行服务器的server_HM，然后给每个客户端执行client_HM。
+配置ip地址输入命令
 
-待客户服务器通信结束，将dedup.ko放入/data目录下输入命令
+```
+ifconfig eth0 192.168.5.1
+```
+
+在/mnt/hmdfs/100/account/device_view/local目录下创建hard目录
+
+先执行服务器的server_HM，然后给每个客户端执行client_HM。（需要几个客户端就在define.h的TOTALTHREAD宏定义配置几，如需要2个客户端则#define TOTALTHREAD 2）
+
+待客户服务器通信结束，在/data目录下执行以下命令
 
 ```
 insmod dedup.ko
