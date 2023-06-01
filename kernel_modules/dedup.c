@@ -76,7 +76,7 @@ static int dedup_path(const char *path)
 
 static int __init dedup_init(void)
 {
-    dedup_path("/data/delpath.txt");
+    dedup_path("/data/delpath");
     return 0;
 }
 
