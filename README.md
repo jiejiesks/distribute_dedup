@@ -50,6 +50,43 @@ export PRODUCT_PATH=vendor/hihope/RK3568
 
 ## RK3568
 
+先在linux环境下在fscryptctl目录下输入make进行编译，然后将可执行二进制文件fscryptctl拷贝进/data目录下，输入以下命令赋予权限
+
+```
+chmod 777 /data/fscryptctl
+```
+
+输入以下命令生成密钥：
+
+```
+head -c 64 /dev/urandom > /data/key
+```
+
+将密钥加入文件系统
+
+```
+/data/fscryptctl add_key /data/service/el2/100/hmdfs/account < /data/key
+```
+
+输入以上这条命令会得到一串字符串，这里假定字符串为f12fccad977328d20a16c79627787a1c，实际情况请按照系统给出的字符串来操作。
+
+输入以下命令给目录加密
+
+```
+fscryptctl set_policy f12fccad977328d20a16c79627787a1c /data/service/el2/100/hmdfs/account/files
+```
+
+然后将需要测试的文件拷贝进/mnt/hmdfs/100/account/device_view/local/files目录中
+
+然后==重启==，此时/mnt/hmdfs/100/account/device_view/local/files为加密状态，可以通过ls命令查看到文件状态均为乱码，类似以下这种情况
+
+```
+AcbnATV97HZzxlmWNoErWS8QkdgTzMzbPU5hjs7XwvyralC5fQCtQA
+qXT50ks2,3RzC8kqJ5FvnHgxS6oL2UDa8nsVkCFmoUQQygA3nWzxfA
+```
+
+然后在加密状态下进行重删，进行以下操作。
+
 将client_HM、server_HM、dedup.ko放入/data目录下，并赋予可执行权限+x。
 
 配置ip地址输入命令
